@@ -7,6 +7,7 @@ class Summary_json_agent:
             
             self.screen_analysis =   {
                 "start_screen":
+                '''start_screen:
                 {
                     "system_information": {
                         "operating_system": "CentOS 6.10 (Final) (x86_64)",
@@ -24,9 +25,11 @@ class Summary_json_agent:
                         "system_prompt": "Enter selection please >",
                         "required_action": "Give the option required for selecting desired functionality."
                     }
-                },
+                }''',
 
-                "login_screen":  {
+                "login_screen":  '''
+                    login_screen:
+                    {
                     "window_name": "Healthpac Systems - Eldorado Computing, Inc.",
                     "release_version": "4.21.01",
                     "main_sections": [
@@ -53,10 +56,11 @@ class Summary_json_agent:
                         }
                     ],
                     "footer": "(c) Copyright 2003 - Eldorado Computing, Inc. All Rights Reserved"
-                    },
+                    }''',
 
                 "login_screen_with_cred" :
-                {
+                '''login_screen_with_cred:
+                  {
                     "window_name": "Healthpac Systems - Eldorado Computing, Inc.",
                     "release_version": "4.21.01",
                     "main_sections": [
@@ -85,9 +89,11 @@ class Summary_json_agent:
                     }
                     ],
                     "footer": "(c) Copyright 2003 - Eldorado Computing, Inc. All Rights Reserved"
-                },
+                }''',
 
-            "Hcs_process_screen": {
+            "Hcs_process_screen": '''
+               Hcs_process_screen:
+               {
                 "window_name": "HEALTHpac Version 4.21.01",
                 "date_time": "Mon Feb 06 2023 9:21",
                 "user": "LAUREN FRANCEL",
@@ -140,137 +146,73 @@ class Summary_json_agent:
                     "E": "Electronic Messages"
                 },
                 "input_prompt": "Enter: ______"
-                } ,
-            "patient_screen": {
-                "window_name": "CLAIMS HISTORY - HCS CORRECTIONAL MGMT WELLPATH",
-                "group": {
-                    "id": "263 790263",
-                    "name": "BROWN COUNTY JAIL",
-                    "status": {
-                    "paid": "Never",
-                    "effect_date": "01/01/18",
-                    "termed_date": "N/A"
-                    }
-                },
-                "employee_info": {
-                    "address": "3030 CURRY ST, GREEN BAY, WI 54311",
-                    "ssn": "920-31-0634",
-                    "birthday": "11/12/88",
-                    "age": 34,
-                    "sex": "M",
-                    "certificate": "930000026255",
-                    "medical_und": "No",
-                    "takeover": "No",
-                    "cob": "No"
-                },
-                "remarks": "",
-                "patient_info": "The Patient is the Employee, shown above.",
-                "coverage": {
-                    "medical": [
-                    {
-                        "date": "09/10/22",
-                        "status": "TERMED"
-                    },
-                    {
-                        "date": "02/20/22",
-                        "status": "ACTIVE",
-                        "id": "790263A"
-                    },
-                    {
-                        "date": "02/17/22",
-                        "status": "TERMED"
-                    }
-                    ],
-                    "dental": [
-                    {
-                        "date": "09/10/22",
-                        "status": "TERMED"
-                    },
-                    {
-                        "date": "02/20/22",
-                        "status": "ACTIVE",
-                        "id": "790263A"
-                    },
-                    {
-                        "date": "02/17/22",
-                        "status": "TERMED"
-                    }
-                    ]
-                },
-                "navigation": "Press Tab key to view other products",
-                "confirmation_prompt": "Is selection correct?"
-                },
-                
-               "patient_with_menu_screen": {
-                "window_name": "CLAIMS ADJUDICATION - HCS CORRECTIONAL MGMT WELLPATH",
-                "group": {
-                    "id": "263 790263",
-                    "name": "BROWN COUNTY JAIL",
-                    "status": {
-                    "paid": "Never",
-                    "effect_date": "01/01/18",
-                    "termed_date": "N/A"
-                    }
-                },
-                "employee_info": {
-                    "address": "3030 CURRY ST, GREEN BAY, WI 54311",
-                    "ssn": "920-31-0634",
-                    "birthday": "11/12/88",
-                    "age": 34,
-                    "sex": "M",
-                    "certificate": "930000026255",
-                    "medical_und": "No",
-                    "takeover": "No",
-                    "cob": "No"
-                },
-                "remarks": "",
-                "patient_info": "The Patient is the Employee, shown above.",
-                "coverage": {
-                    "medical": [
-                    {
-                        "date": "09/10/22",
-                        "status": "TERMED"
-                    },
-                    {
-                        "date": "02/20/22",
-                        "status": "ACTIVE",
-                        "id": "790263A"
-                    },
-                    {
-                        "date": "02/17/22",
-                        "status": "TERMED"
-                    }
-                    ],
-                    "dental": [
-                    {
-                        "date": "09/10/22",
-                        "status": "TERMED"
-                    },
-                    {
-                        "date": "02/20/22",
-                        "status": "ACTIVE",
-                        "id": "790263A"
-                    },
-                    {
-                        "date": "02/17/22",
-                        "status": "TERMED"
-                    }
-                    ]
-                },
-                "navigation": "Press Tab key to view other products",
-                "selection_prompt": "SELECT:",
-                "available_options": {
-                    "M": "Main",
-                    "P": "Prior",
-                    "R": "Resume",
-                    "F": "Find",
-                    "H": "History",
-                    "U": "Utilities",
-                    "L": "Plan"
-                }
-            },
+                }''',
+
+            "work_flow_screen" : '''
+                            work_flow_screen:
+                            {
+                            "screen_title": "Work Flow Queues",
+                            "options": [
+                                {
+                                "selection": "1",
+                                "description": "Access Work Flow Queues"
+                                }
+                            ]
+                            }
+                           ''',
+
+            "queues_screen": '''
+                       queues_screen:
+                       {
+                        "screen_title": "WORKFLOW QUEUES",
+                        "header": "***SELECT***",
+                        "system": "HCS CORRECTIONAL MGMT WELLPATH",
+                        "queue_owner": "MDODDE'S QUEUES",
+                        "columns": ["SEL", "NAME", "DESCRIPTION", "JOBS"],
+                        "entries": [
+                            {
+                            "selection": "1",
+                            "name": "CCH-790136",
+                            "description": "PA DOC",
+                            "jobs": "P1"
+                            },
+                            {
+                            "selection": "2",
+                            "name": "CCH-ARDOC",
+                            "description": "ARDOC EFF 1/1/2020 NO BCBS",
+                            "jobs": ""
+                            },
+                            {
+                            "selection": "3",
+                            "name": "CCH-CA",
+                            "description": "ALL CA SITES HCFA'S",
+                            "jobs": ""
+                            },
+                            {
+                            "selection": "4",
+                            "name": "CCH-CA UB",
+                            "description": "ALL CA SITES UB'S",
+                            "jobs": ""
+                            },
+                            {
+                            "selection": "5",
+                            "name": "CCH-MDCARE",
+                            "description": "MEDICARE SITES HCFA AND UBS",
+                            "jobs": ""
+                            }
+                        ],
+                        "navigation": {
+                            "instructions": "Arrow up / down",
+                            "current_selection": "1",
+                            "action": "Enter to access"
+                        }
+                        }
+                        ''',
+
+            
 
             "patient_claim_screen" : '''
+                            patient_claim_screen:
                             {
                                 "screenAnalysis": {
                                     "title": "Claim Information Screen",
@@ -381,93 +323,6 @@ class Summary_json_agent:
                                 }
                                 }    
                             '''
-                ,
-                "claim_processing_options":  
-                                ''' "title": "Select Details to View",
-                                    "available_options": {
-                                        "D": "Diagnosis Information",
-                                        "S": "Service Line Details",
-                                        "M": "Master File Details",
-                                        "H": "Claims History",
-                                        "C": "Payment Information",
-                                        "T": "Tooth Chart",
-                                        "I": "Claim Image",
-                                        "N": "Claim Notes",
-                                        "O": "Original Claim Information",
-                                        "W": "Patient Episode Information",
-                                        "A": "Audit History of Claim",
-                                        "Y": "Summary Screen"
-                                    },
-                                    "unavailable_options": [
-                                        "n/a",
-                                        "n/a"
-                                    ]''',
-
-                "image_claim_screen" :
-                        '''
-                        "claim_information": {
-                        "claim_number": "222-483371-00",
-                        "status_of_claim": "PDC 11/09/22 KARRIE",
-                        "received_date": "11/04/22",
-                        "incurred_date": "10/22/22",
-                        "plan_id": "790216A",
-                        "effective_date": "02/01/17"
-                    },
-                    "repricing_details": {
-                        "repricing_method": "External sent EDI",
-                        "icd_code": "S01.01XA",
-                        "und_group_codes": [
-                            "790",
-                            "790216"
-                        ],
-                        "network": "CMA",
-                        "claim_source": "EDI 11/07/22"
-                    },
-                    "billing_details": [
-                        {
-                            "from_dos": "10/22/22",
-                            "proceed": null,
-                            "units": null,
-                            "charge_amount": null,
-                            "discount_amount": null,
-                            "repriced_amount": null,
-                            "oi_paid": 0.0
-                        },
-                        {
-                            "from_dos": "10/22/22",
-                            "proceed": null,
-                            "units": null,
-                            "charge_amount": null,
-                            "discount_amount": null,
-                            "repriced_amount": null,
-                            "oi_paid": 0.0
-                        }
-                    ],
-                    "additional_claims_information": {
-                        "tiff_image_name": "110322751469229",
-                        "external_claim_id": null,
-                        "alternate_claim_id": null
-                    },
-                    "claim_totals": {
-                        "total_charge_amount": 1775.0,
-                        "total_discount_amount": 0.0,
-                        "total_repriced_amount": 1775.0,
-                        "total_oi_paid": 0.0
-                    },
-                    "provider_information": {
-                        "patient_tax_id": "256023455",
-                        "provider_tax_id": "593677604",
-                        "employee_patient": "YATES, THOMAS (Self)",
-                        "provider_name": "TAMPA BAY EMERGENCY PHYSICIANS LLC"
-                    },
-                    "status_indicators": {
-                        "image_available": true,
-                        "claim_notes_available": true
-                    },
-                    "navigation_options": {
-                        "G": "Go Back",
-                        "R": "Resume"
-                    }'''
             }
             
             

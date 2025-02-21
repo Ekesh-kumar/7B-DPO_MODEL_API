@@ -36,13 +36,13 @@ class ComprehendAgent:
 
                                 ### **Step 1: Immediate Check**
                                 - The process check result is: "{check}"
-                                - If {check}.strip().lower() == "false", return:
+                                - If {check}.strip().lower() == "true", proceed to Step 2.
+
+                                - Else If {check}.strip().lower() == "false", return:
                                 ```json
                                 {{ "Type": "Action not possible" }}
                                 ```
                                 - **Do not proceed further.**
-
-                                -Else If {check}.strip().lower() == "true", proceed to Step 2.
 
                                 ### **Step 2: Validate Process Conditions**
                                 - If `{process_analysis_results}` contains any failed conditions, return:
