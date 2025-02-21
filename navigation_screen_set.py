@@ -55,8 +55,6 @@ class navigation_set :
             ]
           } ,
 
-
-
           "login_and_view_queue" : {
             "steps" : [ '''Perform the following steps to navigate the mainframe system and reach the claim information screen:
 

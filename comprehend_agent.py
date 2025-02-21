@@ -17,7 +17,7 @@ class ComprehendAgent:
     """
     def __init__(self ):
         openai_api_key = os.environ.get("OPENAI_API_KEY")
-        self.llm = ChatOpenAI(model_name="gpt-4-turbo", openai_api_key=openai_api_key)
+        self.llm = ChatOpenAI(model_name="gpt-4-turbo", temperature = 0.3, openai_api_key=openai_api_key)
 
     def analyze_process_step(self, process_conditions,  prompt: str, summary:str) -> str:
         """Identifies the action to perform by comprehending JSON data to check for prompt requirement."""
@@ -34,30 +34,20 @@ class ComprehendAgent:
                                 f'''
                                 You are an intelligent mainframe terminal agent that **ONLY returns JSON output** based on the following rules.
 
-                                ### **Step 1: Immediate Check**
-                                - The process check result is: "{check}"
-                                - If {check}.strip().lower() == "true", proceed to Step 2.
+                                ### **Step 1: Validate Process Conditions**
+                                - Analysze the json file - `{process_analysis_results}` and if json file contains any failed conditions, return:
+                               
+                                {{ "Type": "Deny Claims", "Reason": "{process_analysis_results}" }} and Do not proceed further.
 
-                                - Else If {check}.strip().lower() == "false", return:
-                                ```json
-                                {{ "Type": "Action not possible" }}
-                                ```
-                                - **Do not proceed further.**
+                                - If all conditions are satisfied, proceed to Step 2.
 
-                                ### **Step 2: Validate Process Conditions**
-                                - If `{process_analysis_results}` contains any failed conditions, return:
-                                ```json
-                                {{ "Type": "Deny Claims", "Reason": "{process_analysis_results}" }}
-                                ```
-                                - **Do not proceed further.**
-                                - If all conditions pass, proceed to Step 3.
-
-                                ### **Step 3: Task Execution (Generate Actions)**
+                                ### **Step 2: Task Execution (Generate Actions)**
+                                - Given the steps of different actions to be performed in the following text text -{prompt}.
                                 - **Navigation and Key Retrieval**:
                                 - If asked to **go to an option** (e.g., "Go to View"), first find the corresponding key (e.g., `"V"`).
                                 - Return:
                                 ```json
-                                {{ "Type": "Type", "Value": "extracted_key" }}
+                                {{ "Type": "Type", "Value": "value_for_selecting_the_option" }}
                                 ```
                                 - If the **option name is ambiguous**, choose the **best available match** from the screen.
 
@@ -103,7 +93,7 @@ class ComprehendAgent:
             prompt = f'''
                         You are an AI assistant responsible for verifying process conditions based on the provided screen data.
                         Your task is to analyze the given conditions and provide an output in the required format.
-
+ 
                         ### **Screen Data:**
                         The screen data is structured as JSON, containing fields, subfields, nested arrays, and options.
                         - **Screen Data:** {screen_data}
@@ -111,6 +101,7 @@ class ComprehendAgent:
                         ### **Conditions to Check:**
                         The conditions define the criteria that must be met before proceeding with the process.
                         - **Formatted Conditions JSON:** {formatted_conditions}
+                        - if no conditons are specified , then return "All the conditions are satisfied".
                         - **Important:** Field names in conditions **may not exactly match** the screen data keys, so use **semantic understanding** to relate them correctly.
 
                         ### **Instructions:**
