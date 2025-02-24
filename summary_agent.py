@@ -7,7 +7,7 @@ class Summary_json_agent:
             
             self.screen_analysis =   {
                 "start_screen":
-                '''start_screen:
+                '''
                 {
                     "system_information": {
                         "operating_system": "CentOS 6.10 (Final) (x86_64)",

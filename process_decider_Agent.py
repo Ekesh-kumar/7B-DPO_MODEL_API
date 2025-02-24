@@ -23,11 +23,10 @@ class process_decider_Agent :
                 And the following task prompt:
                 {task_prompt}
                 ** Determine if the task can be executed based on the screen's current state.
-                ** If multiple screens and multiple tasks are provided in then take the screen information mentioned in the task prompt to compare it with perticular screen data.
-                ** dont compare a task with unrelated screens. .
+
                 ### **Validation Criteria:**
                 - Identify the fields required to execute the task from the given task prompt.
-                - Use **semantic matching** to recognize variations in wording (e.g., "Type Y and Enter" ≈ "Press Y and hit Enter" ≈ "Input Y and confirm").
+                - Use **semantic matching** to recognize variations in wording for actions and fields required for action(e.g., "Type Y and Enter" ≈ "Press Y and hit Enter" ≈ "Input Y and confirm").
                 - Assume that an **input field is always present** unless the screen explicitly states otherwise.
                 - If the task requires **pressing a key (e.g., 'Enter')**, assume the system supports this action unless explicitly restricted.
                 - If **all** required fields are present in the screen data (or functionally equivalent), return `true`.
@@ -35,6 +34,7 @@ class process_decider_Agent :
                 ### **Important Notes:**
                 - If an action like "Type or Enter" is required, assume that an **input box exists** and can accept the key press.
                 - **Do not be overly strict** with wording—if functionally equivalent elements exist, they should be considered a match.
+                --**return summary in few words
                 - **Strictly return only `true` if tasks mentioned in the prompt are matching the screen data else return `false` dont return any explanations.
                 """
 

@@ -31,41 +31,59 @@ class ComprehendAgent:
             response = {"action_required": "action not possible"}
         else :
            response = self.llm.predict(
-                                f'''  
-                                You are an intelligent mainframe terminal agent. Your task is to return ONLY the ordered set of keys required to perform the specified action, given as a prompt.
+                                f'''
+                                You are an intelligent mainframe terminal agent that **ONLY returns JSON output** based on the following rules.
 
                                 ### **Step 1: Validate Process Conditions**
                                 - Analysze the json file - `{process_analysis_results}` and if json file contains any failed conditions, return:
                                
-                                ["Condtions failed"] and Do not proceed further.
+                                {{ "Type": "Deny Claims", "Reason": "{process_analysis_results}" }} and Do not proceed further.
 
                                 - If all conditions are satisfied, proceed to Step 2.
 
                                 ### **Step 2: Task Execution (Generate Actions)**
-                                - Given the screen summary -{summary} in the json format, which contains details of the screen ordered in different key value pairs, which you need to work on.
-                                - Given the task for actions to be performed in the text-{prompt}.
-                                Instructions for action generation:
+                                - Given the screen summary -{summary} in the json format, which contains details for screen you need to be worked on.
+                                - Given the steps of different actions to be performed in the following text text -{prompt}.
+                                - **Navigation and Key Retrieval**:
+                                - If asked to **go to an option** (e.g., "Go to View"), first find the corresponding key (e.g., `"V"`).
+                                - Return:
+                                ```json
+                                {{ "Type": "Type", "Value": "value_for_selecting_the_option" }}
+                                ```
+                                - If the **option name is ambiguous**, choose the **best available match** from the screen.
 
-                                Clearly determine and list the keys or inputs required, in the correct execution order.
-                                Prompt Example:
-                                "Login with username 'abc' and password 'bcd'"
-                                Ordered Keys Example:
-                                ['abc', 'Enter', 'bcd', 'Enter'].
-                                 
-                                ** If task is to select the option then give what value we need type to select the value.
-                                ** If action is to extract any fields from the screen, go through the entire screen info and select the values which best soots for the description.
-                                Action Types: 
-                                Navigation: Specify keys needed for navigation.
-                                Credential Entry: List username/password entries each followed by 'Enter'.
-                                Field Extraction: Provide keys required for extracting/interacting with fields.
-                                Important:
-                                Return only the ordered keys in Python list format.
-                                Do NOT include explanations or additional context.
-                                """
+                                - **Entering Username and Password**:
+                                - Identify fields **near "username" and "password"** on the screen.
+                                - **Check existing values** in these fields:
+                                    - If the username & password **already match** the given credentials, **skip entering them** and proceed to the next task.
+                                    - If fields **are empty or different**, enter them in this order:
+                                    ```json
+                                    [
+                                        {{ "Type": "Input", "Value": "username" }},
+                                        {{ "Type": "KeyPress", "Value": "Enter" }},
+                                        {{ "Type": "Input", "Value": "password" }}
+                                    ]
+                                    ```
+
+                                - **Extracting Field Values**:
+                                - If asked to retrieve a specific field's value (e.g., "Get Order ID"), return:
+                                ```json
+                                {{ "Type": "Value", "Value": "extracted_field_value" }}
+                                ```
+
+                                - **Ensure Proper Action Formatting**:
+                                - If a task requires multiple steps, return a **JSON array**:
+                                    ```json
+                                    [
+                                    {{ "Type": "Action 1" }},
+                                    {{ "Type": "Action 2" }}
+                                    ]
+                                    ```
+                                - **DO NOT** explain the actions—strictly return the JSON output.
                                 '''
                             )
 
-        return response
+        return navigator.naviagte(response)
 
     def per_screen_process_analyzer(self,formatted_conditions, screen_data):
                 

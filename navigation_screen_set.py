@@ -56,36 +56,30 @@ class navigation_set :
           } ,
 
           "login_and_view_queue" : {
-            "steps" : [ '''Perform the following steps to navigate the mainframe system and reach the claim information screen:
+            "steps" : [      '''- Select option for HEALTHpac 4.0 Production.''',
 
-                            1. **start_screen**
-                              - Select option for HEALTHpac 4.0 Production.
-                              - Press Enter to confirm.
-
-                            2. **login_screen**
+                            '''
                               - Check if fields for USERCODE and PASSWORD are present.
                               - Enter the following credentials:
                                 - Username: MDODD1
                                 - Password: Citris@123
-                              - Press Enter to log in.
+                              - Press Enter to log in.''',
+                              
+                            '''
+                              - Select the CLAIMS/ELIGIBILITY option.
+                            ''',
 
-                            3. **Hcs_process_screen**
-                              - Select the Work Flow Queue option.
-                              - Press Enter to proceed.
-
-                            4. **work_flow_screen**
+                            '''
                               - Select the option for 'Access Work Flow Queues'.
-                              - Press Enter to confirm.
+                            ''',
 
-                            5. **queues_screen**
+                            '''
                               - Identify the option for the 'CCH-ARDOC' queue.
                               - Type the queue option.
-                              - Press Enter to access the queue.
+                            ''',
 
-                            6. **patient_claim_screen**
+                            '''
                               - extract patient address.
-
-                            Ensure that each step is executed sequentially and confirm the expected result before proceeding to the next step.
                             '''
                           ],
             "screens" : ["start_screen", "login_screen", "Hcs_process_screen" , "work_flow_screen" , "queues_screen", "patient_claim_screen" ],

@@ -7,6 +7,7 @@ import json
 from summary_agent import Summary_json_agent
 from comprehend_agent import ComprehendAgent
 from navigation_screen_set import navigation_set
+from emulator_client import EmulatorClient
 import sys
 
 dotenv.load_dotenv()
@@ -22,13 +23,14 @@ class processAgent:
         condition = navigation_info.get("conditions")
         size = len(process)
         summary_agent = Summary_json_agent()
-        screen_summary = " "
+        client = EmulatorClient() 
+        screens = client.process_command('start')
+        for i in range(0, size) :
+            action = agent.analyze_process_step(condition[0], process[i], screens)
+            screens  =  client.process_command(action[0])
+            print(screens)
 
-        for i in range(0, len(screens)) :
-            screen_summary = screen_summary + " \n" + summary_agent.get_screen(screens[i])
-
-        print(agent.analyze_process_step(condition[0], process[0], screen_summary))
-
+         
         return "process completed....."
 
 if __name__ =="__main__":
