@@ -42,6 +42,7 @@ class ComprehendAgent:
                                 - If all conditions are satisfied, proceed to Step 2.
 
                                 ### **Step 2: Task Execution (Generate Actions)**
+                                - Given the screen summary -{summary} in the json format, which contains details for screen to be worked on.
                                 - Given the steps of different actions to be performed in the following text text -{prompt}.
                                 - **Navigation and Key Retrieval**:
                                 - If asked to **go to an option** (e.g., "Go to View"), first find the corresponding key (e.g., `"V"`).
@@ -81,10 +82,6 @@ class ComprehendAgent:
                                 - **DO NOT** explain the actions—strictly return the JSON output.
                                 '''
                             )
-
-
-
-
 
         return navigator.naviagte(response)
 

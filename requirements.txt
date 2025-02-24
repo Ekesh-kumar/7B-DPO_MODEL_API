@@ -1,0 +1,9 @@
+Flask==3.1.0
+langchain==0.3.19
+langchain_core==0.3.37
+langchain_openai==0.3.6
+langgraph==0.2.74
+openai==1.63.2
+Pillow==11.1.0
+pydantic==2.10.6
+python-dotenv==1.0.1
