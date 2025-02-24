@@ -26,11 +26,13 @@ class processAgent:
         client = EmulatorClient() 
         screens = client.process_command('start')
         for i in range(0, size) :
-            action = agent.analyze_process_step(condition[0], process[i], screens)
-            screens  =  client.process_command(action[0])
-            print(screens)
+            actionstr = agent.analyze_process_step(condition[0], process[i], screens)
+            actions = json.loads(actionstr)
+            
+            for a in range(0, len(actions)):
+                screens  =  client.process_command(actions[a])
+                print(f"sending the key... {actions[0]}")
 
-         
         return "process completed....."
 
 if __name__ =="__main__":
